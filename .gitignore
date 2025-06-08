@@ -1,0 +1,65 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# FastAPI-specific
+instance/
+*.db
+*.sqlite3
+
+# Editor/IDE
+.vscode/
+.idea/
+
+# Pytest cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs
+*.log
+
+# Docker
+*.pid
+*.tar
+*.tgz
+docker-compose.override.yml
+
+# mypy
+.mypy_cache/
+
+# pip
+pip-log.txt
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# dotenv
+.env
+.env.*
+
+# Optional: If using poetry or pip-tools
+poetry.lock
+Pipfile.lock
+
+# Optional: If using coverage
+.coverage
+coverage.xml
