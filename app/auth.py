@@ -1,14 +1,22 @@
+import os
+import jwt
 from datetime import datetime, timedelta, timezone
 from typing import Optional
-
-import jwt
 from passlib.context import CryptContext
+from dotenv import load_dotenv
 
-# IMPORTANT: Use environment variables to store secrets.
-SECRET_KEY = "YOUR_SECRET_KEY"
+# Load environment variables from .env file
+load_dotenv()
+
+SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
+# Safety check
+if not SECRET_KEY:
+    raise RuntimeError("SECRET_KEY not set in environment.")
+
+# Password hashing context
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:

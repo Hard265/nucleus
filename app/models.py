@@ -1,11 +1,10 @@
 import uuid
 import enum
-from datetime import datetime
+from datetime import datetime, timezone
 from sqlalchemy import (
     Column, String, Boolean, DateTime,
-    Enum, ForeignKey, Table
+    Enum, ForeignKey, Table, UUID
 )
-from sqlalchemy.dialects.postgresql import UUID  # Use this if you target PostgreSQL
 from sqlalchemy.orm import relationship
 from app.database import Base
 
@@ -18,11 +17,10 @@ class ScopeEnum(str, enum.Enum):
 class User(Base):
     __tablename__ = "users"
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    email = Column(String, unique=True, index=True, nullable=True)
+    email = Column(String, unique=True, index=True, nullable=False)
     password_hash = Column(String)
-    mnemonic_hash = Column(String, nullable=True)
     is_active = Column(Boolean, default=True)
-    created_at = Column(DateTime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=datetime.now(timezone.utc))
     
     roles = relationship("UserRole", back_populates="user")
 
